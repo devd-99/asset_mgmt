@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" 
+  url      = "postgresql://devd99@localhost:5432/am"
+}
+
+model PendingProjects {
+  P_ID           Int      @id
+  Overall_status String
+  ICOS           Boolean
+  SDV            Boolean
+  SDG            Boolean
+  Due_Diligence Boolean
+  Complete       Boolean
+  project_details Project_Details @relation(fields: [P_ID], references: [P_ID])
+}
+
+model Portfolio {
+  P_ID           Int    @id
+  Co2E           Float
+  Estimated_Worth Float
+  Marked_Sold    Boolean
+  project_details Project_Details @relation(fields: [P_ID], references: [P_ID])
+}
+
+model Investor {
+  Investor_Name String @id
+  Amount        Float
+  Details       String
+}
+
+model Project_Details {
+  P_ID          Int     @id
+  Name          String
+  Owner_Org     String
+  pending_project PendingProjects?
+  portfolio      Portfolio?
+}
