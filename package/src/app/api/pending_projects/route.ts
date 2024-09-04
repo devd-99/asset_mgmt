@@ -19,9 +19,9 @@ export async function GET(): Promise<NextResponse> {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    const data: PendingProjects = await request.json();
+    const data: any = await request.json();
 
-    const newProject: Project = await prisma.project.create({
+    const newProject: any = await prisma.project.create({
       data: {
         Name: data.Name,
         Owner_Org: data.Owner_Org,

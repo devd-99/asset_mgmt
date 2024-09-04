@@ -1,19 +1,26 @@
+import dotenv from 'dotenv';
+
+dotenv.config()
+console.log("inc")
+console.log(process.env.FIREBASE_API_KEY)
+
+
 const config = {
-  apiKey: "AIzaSyBeYILQCGCDzMKK1wCOpb4vMYhOF6axqzU",
-  authDomain: "eeam-67efc.firebaseapp.com",
-  projectId: "eeam-67efc",
-  storageBucket: "eeam-67efc.appspot.com",
-  messagingSenderId: "87734894771",
-  appId: "1:87734894771:web:a15ac1cb6c2c3d162af0c6",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 
-// When deployed, there are quotes that need to be stripped
-Object.keys(config).forEach((key) => {
-  const configValue = config[key] + "";
-  if (configValue.charAt(0) === '"') {
-    config[key] = configValue.substring(1, configValue.length - 1);
-  }
-});
+// // When deployed, there are quotes that need to be stripped
+// Object.keys(config).forEach((key) => {
+//   const configValue = config[key] + "";
+//   if (configValue.charAt(0) === '"') {
+//     config[key] = configValue.substring(1, configValue.length - 1);
+//   }
+// });
 
 export const firebaseConfig = config;
