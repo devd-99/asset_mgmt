@@ -3,54 +3,98 @@
 ## Introduction
 The Asset Management Dashboard is a web application built with Next.js 13, Prisma, and Firebase authentication. It focuses on managing carbon credits and carbon credit ETFs. The dashboard provides a user-friendly interface for tracking and assessing projects related to carbon credits.
 
-## Features
+## Deployment Instructions
 
-### 1. Server and Client Components
-The Asset Management Dashboard utilizes Next.js 13's server and client component architecture. The `ProjectAssessmentDashboard` component is a client component, allowing for interactive functionality and state management.
+### Prerequisites
+- Node.js (version 14 or above)
+- PostgreSQL database
+- Firebase account
 
-### 2. Prisma Integration
-The dashboard integrates with a PostgreSQL database using Prisma. The Prisma schema defines the data models for the application, including `PendingProjects`, `Portfolio`, `Investor`, and `Project_Details`. This enables efficient data management and querying.
+### Step 1: Clone the Repository
+Clone the Asset Management Dashboard repository from GitHub:
+```
+git clone https://github.com/your-username/asset-management-dashboard.git
+cd asset-management-dashboard
+```
 
-### 3. Firebase Authentication
-User authentication is handled using Firebase. This ensures secure access to the dashboard and protects sensitive project information.
+### Step 2: Install Dependencies
+Install the required dependencies using npm:
+```
+npm install
+```
 
-### 4. Project Assessment Dashboard
-The main feature of the dashboard is the Project Assessment Dashboard. It displays a table with project details, including the project name, ICOS status, SDG validity, SDV validity, and overall status. This allows users to quickly assess the progress and status of each project.
+### Step 3: Set Up Environment Variables
+Create a `.env` file in the project root and add the following environment variables:
+```
+DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
+FIREBASE_API_KEY="your-firebase-api-key"
+FIREBASE_AUTH_DOMAIN="your-firebase-auth-domain"
+FIREBASE_PROJECT_ID="your-firebase-project-id"
+```
+Replace the placeholders with your actual database and Firebase credentials.
 
-### 5. Add New Project
-The dashboard provides a button to add new projects. Clicking on the "Add New Project" button redirects the user to the `/sb/addProject` page, where they can enter the details of a new project.
+### Step 4: Set Up Prisma
+Run the Prisma migration to create the required database tables:
+```
+npx prisma migrate dev
+```
 
-### 6. Fetch Projects from API
-The `ProjectAssessmentDashboard` component fetches project data from an API endpoint (`/api`) using the `fetch` function. The retrieved data is then stored in the component's state using the `useState` hook and displayed in the table.
+### Step 5: Set Up Firebase Authentication
+1. Go to the Firebase Console (https://console.firebase.google.com/).
+2. Create a new project or select an existing one.
+3. Enable the Authentication service in your Firebase project.
+4. Configure the desired authentication methods (e.g., email/password, Google Sign-In).
+5. Obtain the Firebase configuration details (API key, auth domain, project ID) and update the `.env` file accordingly.
 
-### 7. Error Handling
-The dashboard includes error handling for failed API requests. If the API request fails, an error message is logged to the console.
+### Step 6: Start the Development Server
+Run the following command to start the development server:
+```
+npm run dev
+```
+Open your browser and navigate to `http://localhost:3000` to access the Asset Management Dashboard.
 
-### 8. Responsive Design
-The dashboard is built using Material-UI components, which provide a responsive design out of the box. The `TableContainer` component ensures that the table is responsive and scrollable on smaller screens.
+### Step 7: Build and Deploy
+To build the production-ready version of the application, run:
+```
+npm run build
+```
+After the build process is complete, you can deploy the `out` directory to your preferred hosting platform (e.g., Vercel, AWS, Heroku).
 
-## Suggested Features
+## Modification Instructions
 
-### 1. Carbon Credit Tracking
-Implement a feature to track the carbon credits associated with each project. Display the total carbon credits earned and the remaining credits available for each project.
+### Adding New Features
+1. Create a new branch for the feature:
+```
+git checkout -b feature/new-feature
+```
+2. Implement the necessary changes in the codebase.
+3. Test the feature thoroughly.
+4. Commit the changes and push the branch to the remote repository:
+```
+git add .
+git commit -m "Add new feature"
+git push origin feature/new-feature
+```
+5. Create a pull request on GitHub to merge the feature branch into the main branch.
 
-### 2. Carbon Credit Marketplace
-Create a marketplace section where users can buy and sell carbon credits. Implement a trading system that allows users to place orders and execute trades.
+### Modifying the Prisma Schema
+1. Open the `prisma/schema.prisma` file.
+2. Make the necessary changes to the schema, such as adding new models or modifying existing ones.
+3. Run the Prisma migration to apply the changes to the database:
+```
+npx prisma migrate dev
+```
+4. Update any affected code that relies on the modified schema.
 
-### 3. Carbon Credit Portfolio
-Provide a portfolio view that shows the user's current holdings of carbon credits and carbon credit ETFs. Display the total value of the portfolio and the performance of individual assets.
-
-### 4. Carbon Credit Analytics
-Integrate analytics and data visualization to provide insights into the performance of carbon credit projects. Show trends, comparisons, and key metrics to help users make informed decisions.
-
-### 5. Notification System
-Implement a notification system that alerts users about important events, such as project status updates, new investment opportunities, or changes in carbon credit prices.
-
-### 6. Project Details Page
-Create a dedicated page for each project that provides more detailed information, including project documents, images, and progress updates. Allow users to leave comments and collaborate on projects.
-
-### 7. Carbon Credit News and Insights
-Integrate a news feed or blog section that provides the latest news, articles, and insights related to carbon credits and sustainable investments. Keep users informed about industry trends and developments.
+### Updating Firebase Authentication
+1. Go to the Firebase Console (https://console.firebase.google.com/).
+2. Navigate to the Authentication section.
+3. Modify the authentication settings as needed (e.g., enable/disable authentication methods, configure sign-in providers).
+4. Update the Firebase configuration in the `.env` file if necessary.
 
 ## Conclusion
-The Asset Management Dashboard provides a solid foundation for managing carbon credit projects and investments. With the suggested features, the dashboard can be enhanced to offer a comprehensive platform for tracking, trading, and analyzing carbon credits and carbon credit ETFs. The integration of Prisma, Firebase authentication, and Next.js 13 ensures a scalable and secure application architecture.
+The Asset Management Dashboard is now set up and ready for development and deployment. With the provided instructions, you can easily modify and extend the application to incorporate new features and enhancements related to carbon credits and carbon credit ETFs.
+
+Remember to regularly update the dependencies, monitor the application's performance, and follow best practices for security and scalability.
+
+If you encounter any issues or have further questions, please refer to the project's documentation or reach out to the development team for assistance.
